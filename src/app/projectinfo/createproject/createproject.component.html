@@ -1,0 +1,28 @@
+<div class="modal-container">
+    <h2>Add New Project</h2>
+
+    <label>Project Name:</label>
+    <input [(ngModel)]="project.project_name" type="text" />
+
+    <label>Start Date:</label>
+    <input [(ngModel)]="project.start_date" type="date" />
+
+    <label>End Date:</label>
+    <input [(ngModel)]="project.end_date" type="date" (change)="calculateDuration()" />
+
+    <label>Duration:</label>
+    <input [(ngModel)]="project.duration" type="text" readonly />
+
+    <label>Status:</label>
+    <select [(ngModel)]="project.status">
+        <option value="Ongoing">Ongoing</option>
+        <option value="Completed">Completed</option>
+        <option value="Pending">Pending</option>
+    </select>
+
+    <div class="modal-actions">
+        <button (click)="closeDialog()">Cancel</button>
+        <button (click)="saveProject()">Save</button>
+    </div>
+    <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+</div>

@@ -1,0 +1,33 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "projectName": "Project A",
+      "duration": "6 months",
+      "startDate": "2024-01-01",
+      "endDate": "2024-06-30",
+      "status": "Ongoing"
+    }
+  ],
+  "clients": [
+    {
+      "id": "1",
+      "clientName": "Client A",
+      "project": "Project A",
+      "company": "Company A",
+      "email": "ClientA@mail.com",
+      "phone": "9032620666",
+      "address": "Location A",
+      "status": "Active"
+    }
+  ],
+  "meetings": [
+    {
+      "meetingId": 1,
+      "meetingAgenda": "Project Kickoff",
+      "meetingDate": "2024-01-05",
+      "meetingTime": "10:00 AM",
+      "clientId": 1
+    }
+  ]
+}

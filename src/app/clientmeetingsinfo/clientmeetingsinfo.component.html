@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <button class="btn btn-primary mb-3" (click)="toggleMeetingForm()">Schedule Meeting</button>
+
+
+
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Meeting ID</th>
+                <th>Agenda</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Client ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let meeting of meetings">
+                <td>{{ meeting.meeting_id }}</td>
+                <td>{{ meeting.meeting_agenda }}</td>
+                <td>{{ meeting.meeting_date }}</td>
+                <td>{{ meeting.meeting_time }}</td>
+                <td>{{ meeting.client_id }}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" (click)="editMeeting(meeting)">Edit</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteMeeting(meeting.meeting_id!)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div *ngIf="selectedMeeting" class="card p-3 mt-4">
+    <h3>Edit Meeting</h3>
+    <form (ngSubmit)="updateMeeting()">
+        <label for="editMeetingAgenda">Meeting Agenda:</label>
+        <input type="text" id="editMeetingAgenda" name="editMeetingAgenda" class="form-control"
+            [(ngModel)]="selectedMeeting.meeting_agenda" required />
+
+        <label for="editMeetingDate">Meeting Date:</label>
+        <input type="date" id="editMeetingDate" name="editMeetingDate" class="form-control"
+            [(ngModel)]="selectedMeeting.meeting_date" required />
+
+        <label for="editMeetingTime">Meeting Time:</label>
+        <input type="time" id="editMeetingTime" name="editMeetingTime" class="form-control"
+            [(ngModel)]="selectedMeeting.meeting_time" required />
+
+        <label for="editClientId">Client ID:</label>
+        <input type="number" id="editClientId" name="editClientId" class="form-control"
+            [(ngModel)]="selectedMeeting.client_id" required />
+
+        <button type="submit" class="btn btn-success mt-3 me-2">Save Changes</button>
+        <button type="button" class="btn btn-secondary mt-3" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>

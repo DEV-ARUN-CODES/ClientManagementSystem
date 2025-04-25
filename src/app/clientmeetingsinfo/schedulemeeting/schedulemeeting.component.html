@@ -1,0 +1,23 @@
+<div class="modal-container">
+    <label for="meetingAgenda">Meeting Agenda:</label>
+    <input type="text" id="meetingAgenda" name="meetingAgenda" class="form-control"
+        [(ngModel)]="newMeeting.meeting_agenda" required />
+
+    <label for="meetingDate">Meeting Date:</label>
+    <input type="date" id="meetingDate" name="meetingDate" class="form-control" [(ngModel)]="newMeeting.meeting_date"
+        required />
+
+    <label for="meetingTime">Meeting Time:</label>
+    <input type="time" id="meetingTime" name="meetingTime" class="form-control" [(ngModel)]="newMeeting.meeting_time"
+        required />
+
+    <label for="clientId">Client:</label>
+    <select id="clientId" name="clientId" class="form-control" [(ngModel)]="newMeeting.client_id" required>
+        <option *ngFor="let client of clients" [value]="client.client_id">
+            {{ client.client_name }} (ID: {{ client.client_id }})
+        </option>
+    </select>
+
+    <button type="submit" class="btn btn-success mt-3 me-2">Save Meeting</button>
+    <button type="button" class="btn btn-secondary mt-3" (click)="closeDialog()">Cancel</button>
+</div>

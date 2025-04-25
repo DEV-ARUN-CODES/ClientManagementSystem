@@ -1,0 +1,68 @@
+<button class="btn btn-success mb-3" (click)="openAddClientDialog()">Create New Client</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Client Name</th>
+            <th>Assigned Project ID</th>
+            <th>Company</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients">
+            <td>{{ client.client_id }}</td>
+            <td>{{ client.client_name }}</td>
+            <td>{{ client.project_id }}</td>
+            <td>{{ client.company }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.status }}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" (click)="editClient(client)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteClient(client.client_id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="selectedClient">
+    <h3>Edit Client</h3>
+    <form (ngSubmit)="updateClient()">
+        <label for="id">ID:</label>
+        <input type="text" id="id" [(ngModel)]="selectedClient.client_id" name="id" required disabled>
+
+        <label for="clientName">Client Name:</label>
+        <input type="text" id="clientName" [(ngModel)]="selectedClient.client_name" name="clientName" required>
+
+        <label for="Project">Assigned Project:</label>
+        <input type="text" id="Project" [(ngModel)]="selectedClient.project_id" name="Project" required>
+
+        <label for="CompanyA">Company:</label>
+        <input type="text" id="CompanyA" [(ngModel)]="selectedClient.company" name="CompanyA" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="selectedClient.email" name="email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" [(ngModel)]="selectedClient.phone" name="phone" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" [(ngModel)]="selectedClient.address" name="address" required>
+
+        <label for="status">Status:</label>
+        <select id="status" [(ngModel)]="selectedClient.status" name="status" required>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+
+        <button class="btn btn-primary" type="submit" (click)="updateClient()">Update</button>
+        <button class="btn btn-secondary" type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
